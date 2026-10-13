@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Contact Saeed Arad — AI developer & vibe coder. Let's build something useful together.">
+  <title>Contact — Saeed Arad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050b15;
+      --bg-soft: #081426;
+      --panel: rgba(11, 25, 45, .76);
+      --panel-solid: #0b192d;
+      --text: #edf6ff;
+      --muted: #9db2ca;
+      --line: rgba(75, 160, 255, .2);
+      --blue: #20b8ff;
+      --cyan: #6ceeff;
+      --purple: #9b7bff;
+      --shadow: 0 0 38px rgba(0, 153, 255, .12);
+      --radius: 22px;
+      --font: "Inter", sans-serif;
+    }
+    [data-theme="light"] {
+      color-scheme: light;
+      --bg: #f3f8ff;
+      --bg-soft: #e9f2ff;
+      --panel: rgba(255,255,255,.84);
+      --panel-solid: #fff;
+      --text: #10233c;
+      --muted: #526782;
+      --line: rgba(27, 115, 210, .19);
+      --blue: #007bd4;
+      --cyan: #008baf;
+      --purple: #7354d8;
+      --shadow: 0 12px 36px rgba(22, 76, 130, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; font-family: var(--font); color: var(--text);
+      background:
+        radial-gradient(ellipse at 80% 5%, rgba(0, 140, 255, .14), transparent 34%),
+        radial-gradient(ellipse at 8% 32%, rgba(113, 75, 255, .09), transparent 28%),
+        var(--bg);
+      line-height: 1.7; transition: background .3s, color .3s; overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image: linear-gradient(rgba(80,150,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(80,150,255,.035) 1px, transparent 1px);
+      background-size: 44px 44px; mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.4px; }
+    .brand-mark {
+      display: grid; place-items: center; width: 40px; height: 40px; border-radius: 13px;
+      color: #00111d; background: linear-gradient(135deg, var(--cyan), var(--blue) 60%, var(--purple));
+      box-shadow: 0 0 22px rgba(32,184,255,.35); font-weight: 900;
+    }
+    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 18px; align-items: center; color: var(--muted); font-size: 13px; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .icon-btn, .lang-btn, .menu-btn {
+      border: 1px solid var(--line); background: var(--panel); color: var(--text);
+      border-radius: 12px; min-height: 39px; padding: 0 12px; transition: .2s;
+    }
+    .icon-btn:hover, .lang-btn:hover, .menu-btn:hover { border-color: var(--blue); box-shadow: 0 0 18px rgba(32,184,255,.12); }
+    .menu-btn { display: none; font-size: 19px; }
+    .page-hero { padding: 70px 0 40px; }
+    .page-hero .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; padding: 7px 13px; border: 1px solid var(--line);
+      border-radius: 999px; color: var(--cyan); background: var(--panel); font-size: 12px; font-weight: 700; margin-bottom: 18px;
+    }
+    .page-hero h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.15; letter-spacing: -1.5px; margin: 0 0 14px; }
+    .gradient-text { background: linear-gradient(90deg, var(--cyan), var(--blue) 55%, var(--purple)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .page-hero .lead { color: var(--muted); max-width: 560px; font-size: 15px; margin: 0; }
+    section { padding: 30px 0 70px; }
+    .section-kicker { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+    .panel { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius); padding: 25px; box-shadow: var(--shadow); }
+    .panel h3 { margin: 0 0 12px; font-size: 17px; }
+    .panel p { color: var(--muted); font-size: 14px; margin: 0; }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 22px; }
+    .contact-list { display: grid; gap: 12px; margin-top: 20px; }
+    .contact-item {
+      padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--bg-soft);
+      display: flex; align-items: flex-start; gap: 14px; transition: border-color .2s, transform .2s;
+    }
+    .contact-item:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(32,184,255,.18), rgba(155,123,255,.12));
+      color: var(--cyan); font-size: 16px; flex-shrink: 0;
+    }
+    .contact-item small { display: block; color: var(--muted); font-size: 11px; margin-bottom: 2px; }
+    .contact-item strong { font-size: 14px; overflow-wrap: anywhere; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field { display: grid; gap: 7px; margin-bottom: 12px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .field input, .field textarea, .field select {
+      width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 12px 13px;
+      background: var(--bg-soft); color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--blue); box-shadow: 0 0 0 3px rgba(32,184,255,.12);
+    }
+    .field textarea { resize: vertical; min-height: 140px; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 9px;
+      padding: 13px 22px; border-radius: 13px; font-weight: 700; font-size: 13px;
+      border: 1px solid var(--line); transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      color: #00111d; background: linear-gradient(110deg, var(--cyan), var(--blue));
+      border-color: transparent; box-shadow: 0 7px 25px rgba(0,155,255,.22);
+    }
+    .form-note { color: var(--muted); font-size: 12px; margin-top: 12px; }
+    .info-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .info-card {
+      padding: 20px; border-radius: 16px; border: 1px solid var(--line); background: var(--bg-soft);
+      text-align: center;
+    }
+    .info-card .icon { font-size: 24px; margin-bottom: 10px; color: var(--cyan); }
+    .info-card h4 { margin: 0 0 6px; font-size: 14px; }
+    .info-card p { margin: 0; color: var(--muted); font-size: 12px; }
+    .text-link { color: var(--cyan); font-size: 12px; font-weight: 700; }
+    footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { gap: 12px; font-size: 12px; }
+      .info-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 28px, 560px); }
+      .nav { min-height: 66px; }
+      .menu-btn { display: inline-block; }
+      .nav-links {
+        display: none; position: absolute; top: 66px; left: 14px; right: 14px; padding: 15px;
+        background: var(--panel-solid); border: 1px solid var(--line); border-radius: 16px;
+        flex-direction: column; align-items: stretch; gap: 0; box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 8px; }
+      .nav-actions { gap: 5px; }
+      .icon-btn, .lang-btn { min-height: 36px; padding: 0 9px; }
+      .brand small { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .page-hero { padding: 50px 0 28px; }
+    }
+    @media (max-width: 420px) {
+      .container { width: calc(100% - 22px); }
+      .brand { gap: 7px; font-size: 13px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .panel { padding: 19px; }
+    }
+    [dir="rtl"] body { font-family: "Vazirmatn", sans-serif; }
+    [dir="rtl"] h1 { letter-spacing: 0; line-height: 1.3; }
+    [dir="rtl"] .brand small { letter-spacing: 0; }
+    [dir="rtl"] .section-kicker { letter-spacing: 0; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Saeed Arad home">
+        <span class="brand-mark">SA</span>
+        <span>Saeed Arad<small data-i18n="brandSub">AI Developer & Vibe Coder</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="index.html#about" data-i18n="navAbout">About</a>
+        <a href="index.html#skills" data-i18n="navSkills">Skills</a>
+        <a href="index.html#projects" data-i18n="navProjects">Projects</a>
+        <a href="index.html#experience" data-i18n="navExperience">Experience</a>
+        <a href="awards.html" data-i18n="navAwards">Awards</a>
+        <a href="contact.html" class="active" data-i18n="navContact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-btn" id="languageToggle" type="button" aria-label="Switch language">فا</button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch theme">☼</button>
+        <button class="menu-btn" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container page-hero">
+      <div class="eyebrow"><span data-i18n="contactKicker">HAVE AN IDEA?</span></div>
+      <h1 data-i18n="contactTitle">Let's build something <span class="gradient-text">useful</span>.</h1>
+      <p class="lead" data-i18n="contactLead">Tell me what you're trying to build. Fill the form or reach out directly — I'll get back as soon as possible.</p>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="contact-grid">
+          <article class="panel reveal">
+            <h3 data-i18n="contactCardTitle">Contact details</h3>
+            <p data-i18n="contactCardText">For a website, automation, AI project, or collaboration, use the channels below.</p>
+            <div class="contact-list">
+              <a class="contact-item" href="mailto:hello@example.com">
+                <span class="contact-icon">✉</span>
+                <span>
+                  <small data-i18n="emailLabel">Email</small>
+                  <strong>hello@example.com</strong>
+                </span>
+              </a>
+              <a class="contact-item" href="https://t.me/" target="_blank" rel="noreferrer">
+                <span class="contact-icon">✈</span>
+                <span>
+                  <small data-i18n="telegramLabel">Telegram</small>
+                  <strong data-i18n="telegramPlaceholder">@yourusername</strong>
+                </span>
+              </a>
+              <a class="contact-item" href="https://github.com/" target="_blank" rel="noreferrer">
+                <span class="contact-icon">⌘</span>
+                <span>
+                  <small>GitHub</small>
+                  <strong data-i18n="githubPlaceholder">Add your GitHub profile</strong>
+                </span>
+              </a>
+              <a class="contact-item" href="https://linkedin.com/" target="_blank" rel="noreferrer">
+                <span class="contact-icon">in</span>
+                <span>
+                  <small>LinkedIn</small>
+                  <strong data-i18n="linkedinPlaceholder">Add your LinkedIn profile</strong>
+                </span>
+              </a>
+            </div>
+          </article>
+
+          <form class="panel reveal" id="contactForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name" data-i18n="formName">Your name</label>
+                <input id="name" name="name" required autocomplete="name" placeholder="Jane Doe">
+              </div>
+              <div class="field">
+                <label for="email" data-i18n="formEmail">Your email</label>
+                <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+              </div>
+              <div class="field full">
+                <label for="subject" data-i18n="formSubject">Project subject</label>
+                <input id="subject" name="subject" required placeholder="Website / AI automation / Bot">
+              </div>
+              <div class="field full">
+                <label for="type" data-i18n="formType">Project type</label>
+                <select id="type" name="type">
+                  <option value="website" data-i18n="typeWebsite">Website / Landing page</option>
+                  <option value="automation" data-i18n="typeAutomation">Automation / Workflow</option>
+                  <option value="bot" data-i18n="typeBot">Bot (Telegram / other)</option>
+                  <option value="ai" data-i18n="typeAI">AI-powered tool</option>
+                  <option value="other" data-i18n="typeOther">Other / Not sure yet</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="message" data-i18n="formMessage">Message</label>
+                <textarea id="message" name="message" required placeholder="A few details about your idea, timeline, and goals..."></textarea>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit" data-i18n="formSend">Prepare email ↗</button>
+            <p class="form-note" data-i18n="formNote">Demo form: no data is stored or sent by this static website. It opens your email app with a prepared message.</p>
+          </form>
+        </div>
+
+        <div class="info-cards">
+          <div class="info-card reveal">
+            <div class="icon">⚡</div>
+            <h4 data-i18n="info1Title">Fast response</h4>
+            <p data-i18n="info1Text">I usually reply within 24–48 hours on business days.</p>
+          </div>
+          <div class="info-card reveal">
+            <div class="icon">🎯</div>
+            <h4 data-i18n="info2Title">Clear scope</h4>
+            <p data-i18n="info2Text">We'll define goals, timeline, and deliverables before starting.</p>
+          </div>
+          <div class="info-card reveal">
+            <div class="icon">🤝</div>
+            <h4 data-i18n="info3Title">Collaborative</h4>
+            <p data-i18n="info3Text">Regular updates and feedback loops so the result matches your vision.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Saeed Arad. <span data-i18n="rights">Built with curiosity and AI.</span></span>
+      <a href="index.html" class="text-link" data-i18n="backHome">← Back to home</a>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        brandSub:"AI Developer & Vibe Coder", navHome:"Home", navAbout:"About", navSkills:"Skills", navProjects:"Projects", navExperience:"Experience", navAwards:"Awards", navContact:"Contact",
+        contactKicker:"HAVE AN IDEA?", contactTitle:'Let\'s build something <span class="gradient-text">useful</span>.', contactLead:"Tell me what you're trying to build. Fill the form or reach out directly — I'll get back as soon as possible.",
+        contactCardTitle:"Contact details", contactCardText:"For a website, automation, AI project, or collaboration, use the channels below.",
+        emailLabel:"Email", telegramLabel:"Telegram", telegramPlaceholder:"@yourusername",
+        githubPlaceholder:"Add your GitHub profile", linkedinPlaceholder:"Add your LinkedIn profile",
+        formName:"Your name", formEmail:"Your email", formSubject:"Project subject", formType:"Project type",
+        typeWebsite:"Website / Landing page", typeAutomation:"Automation / Workflow", typeBot:"Bot (Telegram / other)", typeAI:"AI-powered tool", typeOther:"Other / Not sure yet",
+        formMessage:"Message", formSend:"Prepare email ↗", formNote:"Demo form: no data is stored or sent by this static website. It opens your email app with a prepared message.",
+        info1Title:"Fast response", info1Text:"I usually reply within 24–48 hours on business days.",
+        info2Title:"Clear scope", info2Text:"We'll define goals, timeline, and deliverables before starting.",
+        info3Title:"Collaborative", info3Text:"Regular updates and feedback loops so the result matches your vision.",
+        rights:"Built with curiosity and AI.", backHome:"← Back to home"
+      },
+      fa: {
+        brandSub:"توسعه‌دهنده هوش مصنوعی و وایب‌کدر", navHome:"خانه", navAbout:"درباره من", navSkills:"مهارت‌ها", navProjects:"پروژه‌ها", navExperience:"سوابق", navAwards:"جوایز", navContact:"تماس",
+        contactKicker:"ایده‌ای دارید؟", contactTitle:'بیایید چیزی <span class="gradient-text">کاربردی</span> بسازیم.', contactLead:"درباره آنچه می‌خواهید بسازید بنویسید. فرم را پر کنید یا مستقیم پیام دهید — در اسرع وقت پاسخ می‌دهم.",
+        contactCardTitle:"راه‌های ارتباطی", contactCardText:"برای طراحی سایت، اتوماسیون، پروژه هوش مصنوعی یا همکاری از کانال‌های زیر استفاده کنید.",
+        emailLabel:"ایمیل", telegramLabel:"تلگرام", telegramPlaceholder:"@نام‌کاربری",
+        githubPlaceholder:"لینک پروفایل گیت‌هاب", linkedinPlaceholder:"لینک پروفایل لینکدین",
+        formName:"نام شما", formEmail:"ایمیل شما", formSubject:"موضوع پروژه", formType:"نوع پروژه",
+        typeWebsite:"وب‌سایت / لندینگ", typeAutomation:"اتوماسیون / گردش‌کار", typeBot:"ربات (تلگرام و ...)", typeAI:"ابزار مبتنی بر هوش مصنوعی", typeOther:"سایر / هنوز مشخص نیست",
+        formMessage:"توضیحات", formSend:"آماده‌سازی ایمیل ↗", formNote:"فرم نمایشی است؛ این وب‌سایت استاتیک اطلاعاتی ذخیره یا ارسال نمی‌کند. برنامه ایمیل دستگاه شما با پیام آماده باز می‌شود.",
+        info1Title:"پاسخ سریع", info1Text:"معمولاً در روزهای کاری ظرف ۲۴ تا ۴۸ ساعت پاسخ می‌دهم.",
+        info2Title:"محدوده مشخص", info2Text:"قبل از شروع، اهداف، زمان‌بندی و خروجی‌ها را با هم مشخص می‌کنیم.",
+        info3Title:"همکاری نزدیک", info3Text:"به‌روزرسانی منظم و حلقه‌های بازخورد تا نتیجه با دیدگاه شما هم‌خوان باشد.",
+        rights:"ساخته‌شده با کنجکاوی و هوش مصنوعی.", backHome:"← بازگشت به خانه"
+      }
+    };
+
+    let currentLang = localStorage.getItem("sa-lang") || "en";
+    let currentTheme = localStorage.getItem("sa-theme") || "dark";
+    const root = document.documentElement;
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      root.lang = lang;
+      root.dir = lang === "fa" ? "rtl" : "ltr";
+      document.documentElement.style.setProperty("--font", lang === "fa" ? '"Vazirmatn", sans-serif' : '"Inter", sans-serif');
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+      // Update select options
+      const typeSelect = document.getElementById("type");
+      if (typeSelect) {
+        typeSelect.querySelectorAll("option").forEach(opt => {
+          const key = opt.dataset.i18n;
+          if (key && translations[lang][key]) opt.textContent = translations[lang][key];
+        });
+      }
+      document.getElementById("languageToggle").textContent = lang === "en" ? "فا" : "EN";
+      document.getElementById("languageToggle").setAttribute("aria-label", lang === "en" ? "تغییر زبان به فارسی" : "Switch language to English");
+      document.title = lang === "fa" ? "تماس — سعید آراد" : "Contact — Saeed Arad";
+      localStorage.setItem("sa-lang", lang);
+    }
+    function setTheme(theme) {
+      currentTheme = theme;
+      root.dataset.theme = theme;
+      document.getElementById("themeToggle").textContent = theme === "dark" ? "☼" : "☾";
+      document.getElementById("themeToggle").setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      localStorage.setItem("sa-theme", theme);
+    }
+    document.getElementById("languageToggle").addEventListener("click", () => setLanguage(currentLang === "en" ? "fa" : "en"));
+    document.getElementById("themeToggle").addEventListener("click", () => setTheme(currentTheme === "dark" ? "light" : "dark"));
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.textContent = open ? "×" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      navLinks.classList.remove("open"); menuToggle.setAttribute("aria-expanded", "false"); menuToggle.textContent = "☰";
+    }));
+    document.getElementById("contactForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const data = new FormData(e.currentTarget);
+      const subject = encodeURIComponent(data.get("subject"));
+      const typeLabel = e.currentTarget.querySelector("#type option:checked")?.textContent || data.get("type");
+      const body = encodeURIComponent(
+        `${currentLang === "fa" ? "نام" : "Name"}: ${data.get("name")}\n` +
+        `${currentLang === "fa" ? "ایمیل" : "Email"}: ${data.get("email")}\n` +
+        `${currentLang === "fa" ? "نوع پروژه" : "Project type"}: ${typeLabel}\n\n` +
+        `${data.get("message")}`
+      );
+      // Replace hello@example.com with your real email before publishing.
+      window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+    }), { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    setTheme(currentTheme);
+    setLanguage(currentLang);
+  </script>
+</body>
+</html>
