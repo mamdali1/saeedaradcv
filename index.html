@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Saeed Arad — AI-powered web developer, automation builder, and vibe coder.">
+  <title>Saeed Arad — AI Developer & Vibe Coder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050b15;
+      --bg-soft: #081426;
+      --panel: rgba(11, 25, 45, .76);
+      --panel-solid: #0b192d;
+      --text: #edf6ff;
+      --muted: #9db2ca;
+      --line: rgba(75, 160, 255, .2);
+      --blue: #20b8ff;
+      --cyan: #6ceeff;
+      --purple: #9b7bff;
+      --shadow: 0 0 38px rgba(0, 153, 255, .12);
+      --radius: 22px;
+      --font: "Inter", sans-serif;
+    }
+    [data-theme="light"] {
+      color-scheme: light;
+      --bg: #f3f8ff;
+      --bg-soft: #e9f2ff;
+      --panel: rgba(255,255,255,.84);
+      --panel-solid: #fff;
+      --text: #10233c;
+      --muted: #526782;
+      --line: rgba(27, 115, 210, .19);
+      --blue: #007bd4;
+      --cyan: #008baf;
+      --purple: #7354d8;
+      --shadow: 0 12px 36px rgba(22, 76, 130, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; font-family: var(--font); color: var(--text);
+      background:
+        radial-gradient(ellipse at 80% 5%, rgba(0, 140, 255, .14), transparent 34%),
+        radial-gradient(ellipse at 8% 32%, rgba(113, 75, 255, .09), transparent 28%),
+        var(--bg);
+      line-height: 1.7; transition: background .3s, color .3s; overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image: linear-gradient(rgba(80,150,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(80,150,255,.035) 1px, transparent 1px);
+      background-size: 44px 44px; mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.4px; }
+    .brand-mark {
+      display: grid; place-items: center; width: 40px; height: 40px; border-radius: 13px;
+      color: #00111d; background: linear-gradient(135deg, var(--cyan), var(--blue) 60%, var(--purple));
+      box-shadow: 0 0 22px rgba(32,184,255,.35); font-weight: 900;
+    }
+    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 23px; align-items: center; color: var(--muted); font-size: 13px; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .icon-btn, .lang-btn, .menu-btn {
+      border: 1px solid var(--line); background: var(--panel); color: var(--text);
+      border-radius: 12px; min-height: 39px; padding: 0 12px; transition: .2s;
+    }
+    .icon-btn:hover, .lang-btn:hover, .menu-btn:hover { border-color: var(--blue); box-shadow: 0 0 18px rgba(32,184,255,.12); }
+    .menu-btn { display: none; font-size: 19px; }
+    .hero { padding: 82px 0 58px; min-height: 590px; display: grid; grid-template-columns: 1.08fr .92fr; gap: 50px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; padding: 7px 13px; border: 1px solid var(--line);
+      border-radius: 999px; color: var(--cyan); background: var(--panel); font-size: 12px; font-weight: 700;
+    }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: #4dffb0; box-shadow: 0 0 12px #4dffb0; }
+    h1 { font-size: clamp(42px, 6.5vw, 76px); line-height: 1.04; letter-spacing: -3px; margin: 22px 0 16px; }
+    .gradient-text { background: linear-gradient(90deg, var(--cyan), var(--blue) 55%, var(--purple)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero h2 { font-size: clamp(18px, 2vw, 24px); margin: 0 0 17px; font-weight: 600; }
+    .lead { color: var(--muted); max-width: 560px; font-size: 15px; }
+    .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin: 28px 0 25px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 9px; padding: 12px 19px; border-radius: 13px; font-weight: 700; font-size: 13px; border: 1px solid var(--line); transition: transform .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: #00111d; background: linear-gradient(110deg, var(--cyan), var(--blue)); border-color: transparent; box-shadow: 0 7px 25px rgba(0,155,255,.22); }
+    .btn-secondary { background: var(--panel); }
+    .socials { display: flex; gap: 10px; }
+    .socials a { width: 37px; height: 37px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 12px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .socials a:hover { color: var(--cyan); border-color: var(--blue); }
+    .visual { position: relative; min-height: 420px; display: grid; place-items: center; }
+    .orbit { position: absolute; width: min(390px, 90%); aspect-ratio: 1; border: 1px solid rgba(32,184,255,.35); border-radius: 50%; box-shadow: inset 0 0 45px rgba(32,184,255,.08), 0 0 45px rgba(32,184,255,.12); animation: orbitPulse 5s ease-in-out infinite; }
+    .orbit::before, .orbit::after { content: ""; position: absolute; inset: 25px; border: 1px dashed rgba(108,238,255,.32); border-radius: 50%; }
+    .orbit::after { inset: 55px; border-style: solid; border-color: rgba(155,123,255,.25); }
+    .portrait {
+      width: min(300px, 72%); aspect-ratio: .8; position: relative; z-index: 2; border-radius: 46% 46% 25px 25px;
+      border: 1px solid rgba(108,238,255,.5); background: linear-gradient(145deg, rgba(32,184,255,.22), rgba(155,123,255,.12));
+      box-shadow: 0 0 55px rgba(0,153,255,.22); overflow: hidden; display: grid; place-items: center;
+    }
+    .portrait-art { width: 100%; height: 100%; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 35%, rgba(32,184,255,.2), transparent 43%), linear-gradient(150deg, transparent 45%, rgba(32,184,255,.08)); }
+    .portrait-art svg { width: 90%; height: 90%; filter: drop-shadow(0 0 16px rgba(32,184,255,.22)); }
+    .float-card {
+      position: absolute; z-index: 3; padding: 12px 15px; border: 1px solid var(--line); border-radius: 15px;
+      background: var(--panel); backdrop-filter: blur(14px); box-shadow: var(--shadow); font-size: 12px;
+      animation: float 5s ease-in-out infinite;
+    }
+    .float-card strong { display: block; font-size: 13px; }
+    .float-card span { color: var(--muted); font-size: 11px; }
+    .card-code { top: 52px; right: -5px; }
+    .card-ai { bottom: 45px; left: -8px; animation-delay: -2s; }
+    .card-symbol { color: var(--cyan); font-size: 19px; float: left; margin-right: 9px; }
+    section { padding: 62px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 28px; }
+    .section-kicker { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+    h2.section-title { font-size: clamp(28px, 4vw, 38px); line-height: 1.2; margin: 7px 0 0; letter-spacing: -1px; }
+    .section-note { color: var(--muted); font-size: 13px; max-width: 390px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .panel { border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius); padding: 25px; box-shadow: var(--shadow); }
+    .panel h3 { margin: 0 0 12px; font-size: 17px; }
+    .panel p { color: var(--muted); font-size: 14px; margin: 0; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 23px; }
+    .stat { padding: 15px; border-radius: 15px; background: var(--bg-soft); border: 1px solid var(--line); }
+    .stat strong { display: block; font-size: 25px; color: var(--cyan); line-height: 1.2; }
+    .stat span { color: var(--muted); font-size: 11px; }
+    .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .skill-group h3 { font-size: 14px; margin: 0 0 16px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; font-size: 11px; color: var(--muted); background: var(--bg-soft); }
+    .chip:hover { color: var(--cyan); border-color: var(--blue); }
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project { overflow: hidden; padding: 0; transition: transform .25s, border-color .25s; }
+    .project:hover { transform: translateY(-6px); border-color: rgba(32,184,255,.55); }
+    .project-art { height: 150px; display: grid; place-items: center; position: relative; overflow: hidden; background: linear-gradient(135deg, #061b34, #112f54 55%, #24174a); border-bottom: 1px solid var(--line); }
+    [data-theme="light"] .project-art { background: linear-gradient(135deg, #dcefff, #b4dcff 55%, #e0d6ff); }
+    .project-art::before { content: ""; width: 160px; height: 160px; border: 1px solid rgba(108,238,255,.35); border-radius: 35%; transform: rotate(35deg); position: absolute; }
+    .project-art::after { content: ""; width: 100px; height: 100px; border: 1px solid rgba(155,123,255,.55); border-radius: 50%; position: absolute; box-shadow: 0 0 35px rgba(32,184,255,.25); }
+    .project-icon { z-index: 1; font-size: 36px; color: var(--cyan); text-shadow: 0 0 25px rgba(32,184,255,.65); }
+    .project-body { padding: 20px; }
+    .project-body h3 { margin: 0 0 7px; font-size: 16px; }
+    .project-body p { color: var(--muted); font-size: 12px; min-height: 54px; margin: 0 0 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tags span { font-size: 10px; padding: 4px 7px; border-radius: 7px; background: rgba(32,184,255,.09); color: var(--cyan); }
+    .text-link { color: var(--cyan); font-size: 12px; font-weight: 700; }
+    .timeline { display: grid; gap: 18px; }
+    .timeline-item { position: relative; padding: 0 0 0 26px; border-left: 1px solid var(--line); }
+    [dir="rtl"] .timeline-item { padding: 0 26px 0 0; border-left: 0; border-right: 1px solid var(--line); }
+    .timeline-item::before { content: ""; position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 12px var(--blue); left: -5px; top: 7px; }
+    [dir="rtl"] .timeline-item::before { left: auto; right: -5px; }
+    .timeline-item h3 { margin: 0; font-size: 15px; }
+    .timeline-item .date { color: var(--cyan); font-size: 11px; font-weight: 700; }
+    .timeline-item p { color: var(--muted); margin: 6px 0 0; font-size: 13px; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 20px; }
+    .contact-list { display: grid; gap: 12px; margin-top: 20px; }
+    .contact-item { padding: 13px; border-radius: 13px; border: 1px solid var(--line); background: var(--bg-soft); }
+    .contact-item small { display: block; color: var(--muted); font-size: 10px; }
+    .contact-item strong { font-size: 13px; overflow-wrap: anywhere; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .field { display: grid; gap: 7px; margin-bottom: 12px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 11px; color: var(--muted); }
+    .field input, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 12px 13px; background: var(--bg-soft); color: var(--text); outline: none; }
+    .field input:focus, .field textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(32,184,255,.1); }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .form-note { color: var(--muted); font-size: 11px; margin-top: 10px; }
+    footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @keyframes orbitPulse { 0%,100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.035); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 900px) {
+      .nav-links { gap: 13px; font-size: 12px; }
+      .hero { gap: 20px; padding-top: 58px; }
+      .card-code { right: -2px; } .card-ai { left: -2px; }
+      .skill-groups { grid-template-columns: repeat(2, 1fr); }
+      .projects { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 28px, 560px); }
+      .nav { min-height: 66px; }
+      .menu-btn { display: inline-block; }
+      .nav-links { display: none; position: absolute; top: 66px; left: 14px; right: 14px; padding: 15px; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 16px; flex-direction: column; align-items: stretch; gap: 0; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 8px; }
+      .nav-actions { gap: 5px; }
+      .icon-btn, .lang-btn { min-height: 36px; padding: 0 9px; }
+      .brand small { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 53px 0 35px; gap: 5px; }
+      .hero-copy { order: 1; } .visual { order: 0; min-height: 330px; }
+      .orbit { width: 290px; } .portrait { width: 220px; }
+      .card-code { top: 30px; right: 0; } .card-ai { bottom: 25px; left: 0; }
+      h1 { letter-spacing: -2px; }
+      section { padding: 43px 0; }
+      .section-head { display: block; }
+      .section-note { margin-top: 10px; }
+      .grid-2, .contact-grid { grid-template-columns: 1fr; }
+      .skill-groups { grid-template-columns: 1fr 1fr; }
+      .projects { grid-template-columns: 1fr; }
+      .project-art { height: 170px; }
+    }
+    @media (max-width: 420px) {
+      .container { width: calc(100% - 22px); }
+      .brand { gap: 7px; font-size: 13px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .nav-actions { gap: 4px; }
+      .lang-btn { font-size: 11px; }
+      .hero-buttons .btn { flex: 1; padding: 11px 12px; }
+      .stats { gap: 7px; }
+      .stat { padding: 11px 8px; }
+      .stat strong { font-size: 21px; }
+      .skill-groups { grid-template-columns: 1fr; }
+      .panel { padding: 19px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+    }
+    [dir="rtl"] body { font-family: "Vazirmatn", sans-serif; }
+    [dir="rtl"] h1 { letter-spacing: 0; line-height: 1.3; }
+    [dir="rtl"] .section-title { letter-spacing: 0; }
+    [dir="rtl"] .brand small { letter-spacing: 0; }
+    [dir="rtl"] .section-kicker { letter-spacing: 0; }
+    [dir="rtl"] .socials { direction: ltr; justify-content: flex-end; }
+    [dir="rtl"] .hero-buttons { justify-content: flex-start; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Saeed Arad home">
+        <span class="brand-mark">SA</span>
+        <span>Saeed Arad<small data-i18n="brandSub">AI Developer & Vibe Coder</small></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home" class="active" data-i18n="navHome">Home</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#skills" data-i18n="navSkills">Skills</a>
+        <a href="#projects" data-i18n="navProjects">Projects</a>
+        <a href="#experience" data-i18n="navExperience">Experience</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-btn" id="languageToggle" type="button" aria-label="Switch language">فا</button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch theme">☼</button>
+        <button class="menu-btn" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="pulse"></span><span data-i18n="eyebrow">BUILDING WITH AI · OPEN TO PROJECTS</span></span>
+        <h1><span data-i18n="hello">Hello, I'm</span><br><span class="gradient-text">Saeed Arad</span></h1>
+        <h2 data-i18n="heroTitle">AI-Powered Developer <span class="gradient-text">· Vibe Coder</span></h2>
+        <p class="lead" data-i18n="heroText">I turn ideas into websites, web apps, automations, and smart bots by combining practical development with AI-assisted coding.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#projects"><span data-i18n="viewProjects">Explore Projects</span> <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-secondary" href="#contact" data-i18n="contactMe">Let's Talk</a>
+        </div>
+        <div class="socials" aria-label="Social links">
+          <a href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
+          <a href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Telegram">TG</a>
+          <a href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
+        </div>
+      </div>
+      <div class="visual" aria-label="Abstract AI developer illustration">
+        <div class="orbit"></div>
+        <div class="portrait">
+          <div class="portrait-art">
+            <svg viewBox="0 0 280 350" role="img" aria-label="Abstract developer avatar">
+              <defs>
+                <linearGradient id="jacket" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123e68"/><stop offset="1" stop-color="#07101e"/></linearGradient>
+                <linearGradient id="face" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8b18a"/><stop offset="1" stop-color="#8d523e"/></linearGradient>
+              </defs>
+              <path d="M36 350 Q42 260 91 239 L111 224 L174 224 L198 242 Q241 270 247 350Z" fill="url(#jacket)" stroke="#20b8ff" stroke-opacity=".5"/>
+              <path d="M112 210 L112 245 Q142 270 170 243 L165 202Z" fill="url(#face)"/>
+              <path d="M92 115 Q89 57 141 52 Q194 54 190 121 L180 185 Q166 220 139 221 Q109 212 98 179Z" fill="url(#face)"/>
+              <path d="M89 132 Q70 78 103 49 Q127 26 164 43 Q198 52 197 95 L187 119 L177 86 Q141 94 113 75 Q109 105 89 132Z" fill="#101b2d" stroke="#20b8ff" stroke-opacity=".6" stroke-width="2"/>
+              <path d="M99 116 L133 113 L129 132 L101 132Z M145 113 L178 112 L175 132 L148 132Z" fill="#07111f" stroke="#67e8ff" stroke-width="3"/>
+              <path d="M132 122 L145 122" stroke="#67e8ff" stroke-width="3"/>
+              <path d="M124 164 Q141 173 158 162" fill="none" stroke="#6c3540" stroke-width="3" stroke-linecap="round"/>
+              <path d="M100 244 L139 290 L179 244" fill="none" stroke="#20b8ff" stroke-opacity=".8" stroke-width="3"/>
+              <path d="M138 291 L128 350 M140 291 L158 350" stroke="#20b8ff" stroke-opacity=".35" stroke-width="2"/>
+              <circle cx="139" cy="290" r="5" fill="#6ceeff"/>
+            </svg>
+          </div>
+        </div>
+        <div class="float-card card-code"><span class="card-symbol">⌘</span><strong data-i18n="floatCode">Code. Create. Automate.</strong><span data-i18n="floatCodeSub">From idea to launch</span></div>
+        <div class="float-card card-ai"><span class="card-symbol">✳</span><strong data-i18n="floatAI">Vibe Coding</strong><span data-i18n="floatAISub">Human creativity + AI tools</span></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="section-kicker" data-i18n="aboutKicker">A LITTLE ABOUT ME</div><h2 class="section-title" data-i18n="aboutTitle">Technology with a purpose.</h2></div>
+          <p class="section-note" data-i18n="aboutNote">I focus on practical digital products that solve real problems—not just impressive demos.</p>
+        </div>
+        <div class="grid-2">
+          <article class="panel reveal">
+            <h3 data-i18n="aboutCardTitle">Developer · Builder · Educator</h3>
+            <p data-i18n="aboutText">I'm Saeed Arad, an AI-oriented developer who uses vibe coding and AI-assisted workflows to build websites, web applications, business automations, and bots. I enjoy turning a rough idea into a clear plan, a working product, and a better user experience.</p>
+            <div class="stats">
+              <div class="stat"><strong>AI+</strong><span data-i18n="stat1">AI-assisted workflow</span></div>
+              <div class="stat"><strong>Web</strong><span data-i18n="stat2">Web & automation</span></div>
+              <div class="stat"><strong>Build</strong><span data-i18n="stat3">Project-focused</span></div>
+            </div>
+          </article>
+          <article class="panel reveal">
+            <h3 data-i18n="approachTitle">How I work</h3>
+            <div class="timeline">
+              <div class="timeline-item"><h3 data-i18n="approach1Title">01 · Understand</h3><p data-i18n="approach1Text">Clarify the goal, audience, requirements, and constraints.</p></div>
+              <div class="timeline-item"><h3 data-i18n="approach2Title">02 · Prototype</h3><p data-i18n="approach2Text">Use AI coding tools to move quickly from concept to prototype.</p></div>
+              <div class="timeline-item"><h3 data-i18n="approach3Title">03 · Test & improve</h3><p data-i18n="approach3Text">Review, debug, refine responsiveness, and prepare for deployment.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="section-kicker" data-i18n="skillsKicker">MY TOOLKIT</div><h2 class="section-title" data-i18n="skillsTitle">Skills & technologies</h2></div>
+          <p class="section-note" data-i18n="skillsNote">A practical toolkit for building, shipping, and improving digital products.</p>
+        </div>
+        <div class="skill-groups">
+          <article class="panel skill-group reveal"><h3 data-i18n="skillWeb">Web development</h3><div class="chips"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">WordPress</span><span class="chip">Responsive UI</span></div></article>
+          <article class="panel skill-group reveal"><h3 data-i18n="skillAI">AI & vibe coding</h3><div class="chips"><span class="chip">ChatGPT</span><span class="chip">Claude</span><span class="chip">Gemini</span><span class="chip">Cursor</span><span class="chip">Replit</span><span class="chip">Prompt design</span></div></article>
+          <article class="panel skill-group reveal"><h3 data-i18n="skillBuild">Automation & products</h3><div class="chips"><span class="chip">n8n</span><span class="chip">REST APIs</span><span class="chip">Telegram bots</span><span class="chip">Workflow design</span><span class="chip">Debugging</span><span class="chip">Deployment</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="section-kicker" data-i18n="projectsKicker">SELECTED WORK</div><h2 class="section-title" data-i18n="projectsTitle">Projects & experiments</h2></div>
+          <p class="section-note" data-i18n="projectsNote">Replace these sample cards with your real projects, screenshots, and live links.</p>
+        </div>
+        <div class="projects">
+          <article class="panel project reveal"><div class="project-art"><span class="project-icon">⌘</span></div><div class="project-body"><h3 data-i18n="project1Title">Academy Website</h3><p data-i18n="project1Text">A training website concept for presenting courses, collecting leads, and helping visitors find the right learning path.</p><div class="tags"><span>HTML/CSS</span><span>WordPress</span><span>AI</span></div><a class="text-link" href="https://academy-arad.ir/" target="_blank" rel="noreferrer" data-i18n="projectLink">View project ↗</a></div></article>
+          <article class="panel project reveal"><div class="project-art"><span class="project-icon">◈</span></div><div class="project-body"><h3 data-i18n="project2Title">Trading Tools & Dashboard</h3><p data-i18n="project2Text">A concept for trading-focused utilities, calculators, dashboards, and workflow improvements.</p><div class="tags"><span>JavaScript</span><span>PHP</span><span>UI/UX</span></div><a class="text-link" href="#contact" data-i18n="projectLink">Discuss a similar project ↗</a></div></article>
+          <article class="panel project reveal"><div class="project-art"><span class="project-icon">✳</span></div><div class="project-body"><h3 data-i18n="project3Title">AI Automation & Bots</h3><p data-i18n="project3Text">Automation concepts that connect tools, reduce repetitive work, and make everyday workflows easier.</p><div class="tags"><span>AI tools</span><span>n8n</span><span>APIs</span></div><a class="text-link" href="#contact" data-i18n="projectLink">Discuss a similar project ↗</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="section-kicker" data-i18n="experienceKicker">MY JOURNEY</div><h2 class="section-title" data-i18n="experienceTitle">Experience & focus</h2></div>
+        </div>
+        <div class="grid-2">
+          <article class="panel reveal">
+            <div class="timeline">
+              <div class="timeline-item"><h3 data-i18n="exp1Title">AI Developer & Vibe Coder</h3><div class="date" data-i18n="exp1Date">Current focus</div><p data-i18n="exp1Text">Designing and building websites, lightweight web apps, and AI-assisted digital solutions.</p></div>
+              <div class="timeline-item"><h3 data-i18n="exp2Title">AI & Technology Educator</h3><div class="date" data-i18n="exp2Date">Training & workshops</div><p data-i18n="exp2Text">Helping learners understand AI tools and apply them through hands-on projects.</p></div>
+              <div class="timeline-item"><h3 data-i18n="exp3Title">Trading & Financial Markets</h3><div class="date" data-i18n="exp3Date">Education & analysis</div><p data-i18n="exp3Text">Experience creating educational content and practical workflows around financial markets.</p></div>
+            </div>
+          </article>
+          <article class="panel reveal">
+            <h3 data-i18n="valuesTitle">What you can expect</h3>
+            <div class="chips" style="margin:16px 0 20px"><span class="chip" data-i18n="value1">Clear communication</span><span class="chip" data-i18n="value2">AI-assisted delivery</span><span class="chip" data-i18n="value3">Responsive design</span><span class="chip" data-i18n="value4">Iterative improvement</span><span class="chip" data-i18n="value5">Practical solutions</span></div>
+            <p data-i18n="valuesText">My goal is to make technology useful, understandable, and maintainable. Project details and dates can be added here as your portfolio grows.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="section-kicker" data-i18n="contactKicker">HAVE AN IDEA?</div><h2 class="section-title" data-i18n="contactTitle">Let's build something useful.</h2></div>
+          <p class="section-note" data-i18n="contactNote">Tell me what you're trying to build. This form opens your email app with a prepared message.</p>
+        </div>
+        <div class="contact-grid">
+          <article class="panel reveal">
+            <h3 data-i18n="contactCardTitle">Contact details</h3>
+            <p data-i18n="contactCardText">For a website, automation, AI project, or collaboration, use the details below.</p>
+            <div class="contact-list">
+              <a class="contact-item" href="mailto:hello@example.com"><small data-i18n="emailLabel">Email — replace this</small><strong>hello@example.com</strong></a>
+              <a class="contact-item" href="https://github.com/" target="_blank" rel="noreferrer"><small>GitHub</small><strong data-i18n="githubPlaceholder">Add your GitHub profile URL</strong></a>
+              <a class="contact-item" href="https://linkedin.com/" target="_blank" rel="noreferrer"><small>LinkedIn</small><strong data-i18n="linkedinPlaceholder">Add your LinkedIn profile URL</strong></a>
+            </div>
+          </article>
+          <form class="panel reveal" id="contactForm">
+            <div class="form-grid">
+              <div class="field"><label for="name" data-i18n="formName">Your name</label><input id="name" name="name" required autocomplete="name" placeholder="Jane Doe"></div>
+              <div class="field"><label for="email" data-i18n="formEmail">Your email</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+              <div class="field full"><label for="subject" data-i18n="formSubject">Project subject</label><input id="subject" name="subject" required placeholder="Website / AI automation / Bot"></div>
+              <div class="field full"><label for="message" data-i18n="formMessage">Message</label><textarea id="message" name="message" required placeholder="A few details about your idea..."></textarea></div>
+            </div>
+            <button class="btn btn-primary" type="submit" data-i18n="formSend">Prepare email ↗</button>
+            <p class="form-note" data-i18n="formNote">Demo form: no data is stored or sent by this static website.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner"><span>© <span id="year"></span> Saeed Arad. <span data-i18n="rights">Built with curiosity and AI.</span></span><a href="#home" class="text-link" data-i18n="backTop">Back to top ↑</a></div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        brandSub:"AI Developer & Vibe Coder", navHome:"Home", navAbout:"About", navSkills:"Skills", navProjects:"Projects", navExperience:"Experience", navContact:"Contact",
+        eyebrow:"BUILDING WITH AI · OPEN TO PROJECTS", hello:"Hello, I'm", heroTitle:'AI-Powered Developer <span class="gradient-text">· Vibe Coder</span>', heroText:"I turn ideas into websites, web apps, automations, and smart bots by combining practical development with AI-assisted coding.", viewProjects:"Explore Projects", contactMe:"Let's Talk",
+        floatCode:"Code. Create. Automate.", floatCodeSub:"From idea to launch", floatAI:"Vibe Coding", floatAISub:"Human creativity + AI tools",
+        aboutKicker:"A LITTLE ABOUT ME", aboutTitle:"Technology with a purpose.", aboutNote:"I focus on practical digital products that solve real problems—not just impressive demos.", aboutCardTitle:"Developer · Builder · Educator", aboutText:"I'm Saeed Arad, an AI-oriented developer who uses vibe coding and AI-assisted workflows to build websites, web applications, business automations, and bots. I enjoy turning a rough idea into a clear plan, a working product, and a better user experience.", stat1:"AI-assisted workflow", stat2:"Web & automation", stat3:"Project-focused",
+        approachTitle:"How I work", approach1Title:"01 · Understand", approach1Text:"Clarify the goal, audience, requirements, and constraints.", approach2Title:"02 · Prototype", approach2Text:"Use AI coding tools to move quickly from concept to prototype.", approach3Title:"03 · Test & improve", approach3Text:"Review, debug, refine responsiveness, and prepare for deployment.",
+        skillsKicker:"MY TOOLKIT", skillsTitle:"Skills & technologies", skillsNote:"A practical toolkit for building, shipping, and improving digital products.", skillWeb:"Web development", skillAI:"AI & vibe coding", skillBuild:"Automation & products",
+        projectsKicker:"SELECTED WORK", projectsTitle:"Projects & experiments", projectsNote:"Replace these sample cards with your real projects, screenshots, and live links.", project1Title:"Academy Website", project1Text:"A training website concept for presenting courses, collecting leads, and helping visitors find the right learning path.", project2Title:"Trading Tools & Dashboard", project2Text:"A concept for trading-focused utilities, calculators, dashboards, and workflow improvements.", project3Title:"AI Automation & Bots", project3Text:"Automation concepts that connect tools, reduce repetitive work, and make everyday workflows easier.", projectLink:"View / discuss project ↗",
+        experienceKicker:"MY JOURNEY", experienceTitle:"Experience & focus", exp1Title:"AI Developer & Vibe Coder", exp1Date:"Current focus", exp1Text:"Designing and building websites, lightweight web apps, and AI-assisted digital solutions.", exp2Title:"AI & Technology Educator", exp2Date:"Training & workshops", exp2Text:"Helping learners understand AI tools and apply them through hands-on projects.", exp3Title:"Trading & Financial Markets", exp3Date:"Education & analysis", exp3Text:"Experience creating educational content and practical workflows around financial markets.", valuesTitle:"What you can expect", value1:"Clear communication", value2:"AI-assisted delivery", value3:"Responsive design", value4:"Iterative improvement", value5:"Practical solutions", valuesText:"My goal is to make technology useful, understandable, and maintainable. Project details and dates can be added here as your portfolio grows.",
+        contactKicker:"HAVE AN IDEA?", contactTitle:"Let's build something useful.", contactNote:"Tell me what you're trying to build. This form opens your email app with a prepared message.", contactCardTitle:"Contact details", contactCardText:"For a website, automation, AI project, or collaboration, use the details below.", emailLabel:"Email — replace this", githubPlaceholder:"Add your GitHub profile URL", linkedinPlaceholder:"Add your LinkedIn profile URL", formName:"Your name", formEmail:"Your email", formSubject:"Project subject", formMessage:"Message", formSend:"Prepare email ↗", formNote:"Demo form: no data is stored or sent by this static website.", rights:"Built with curiosity and AI.", backTop:"Back to top ↑"
+      },
+      fa: {
+        brandSub:"توسعه‌دهنده هوش مصنوعی و وایب‌کدر", navHome:"خانه", navAbout:"درباره من", navSkills:"مهارت‌ها", navProjects:"پروژه‌ها", navExperience:"سوابق", navContact:"تماس",
+        eyebrow:"ساخت با هوش مصنوعی · آماده همکاری", hello:"سلام، من", heroTitle:'توسعه‌دهنده با هوش مصنوعی <span class="gradient-text">· وایب‌کدر</span>', heroText:"ایده‌ها را با ترکیب برنامه‌نویسی کاربردی و ابزارهای هوش مصنوعی به وب‌سایت، وب‌اپلیکیشن، اتوماسیون و ربات‌های هوشمند تبدیل می‌کنم.", viewProjects:"مشاهده پروژه‌ها", contactMe:"شروع همکاری",
+        floatCode:"کدنویسی، خلق، اتوماسیون", floatCodeSub:"از ایده تا اجرا", floatAI:"وایب‌کدینگ", floatAISub:"خلاقیت انسانی + ابزارهای AI",
+        aboutKicker:"کمی درباره من", aboutTitle:"فناوری با هدفی مشخص.", aboutNote:"تمرکز من ساخت محصولات دیجیتال کاربردی است که مشکلات واقعی را حل کنند؛ نه فقط دموهای جذاب.", aboutCardTitle:"توسعه‌دهنده · سازنده · مدرس", aboutText:"من سعید آراد هستم؛ توسعه‌دهنده‌ای علاقه‌مند به هوش مصنوعی که با وایب‌کدینگ و فرایندهای توسعه مبتنی بر AI، وب‌سایت، وب‌اپلیکیشن، اتوماسیون کسب‌وکار و ربات می‌سازم. از تبدیل یک ایده خام به برنامه‌ای روشن، محصولی قابل استفاده و تجربه کاربری بهتر لذت می‌برم.", stat1:"توسعه با کمک AI", stat2:"وب و اتوماسیون", stat3:"تمرکز بر پروژه",
+        approachTitle:"روش کار من", approach1Title:"۰۱ · شناخت نیاز", approach1Text:"هدف، مخاطب، نیازمندی‌ها و محدودیت‌های پروژه را مشخص می‌کنم.", approach2Title:"۰۲ · نمونه‌سازی", approach2Text:"با ابزارهای کدنویسی هوش مصنوعی، ایده را سریع به نمونه اولیه تبدیل می‌کنم.", approach3Title:"۰۳ · تست و بهبود", approach3Text:"بازبینی، رفع خطا، بهینه‌سازی نمایش در دستگاه‌ها و آماده‌سازی برای انتشار.",
+        skillsKicker:"ابزارهای من", skillsTitle:"مهارت‌ها و فناوری‌ها", skillsNote:"مجموعه‌ای کاربردی برای ساخت، انتشار و بهبود محصولات دیجیتال.", skillWeb:"توسعه وب", skillAI:"هوش مصنوعی و وایب‌کدینگ", skillBuild:"اتوماسیون و محصول",
+        projectsKicker:"نمونه کارها", projectsTitle:"پروژه‌ها و تجربه‌ها", projectsNote:"کارت‌های نمونه را با پروژه‌های واقعی، تصاویر و لینک‌های خود جایگزین کنید.", project1Title:"وب‌سایت آموزشگاه", project1Text:"طرح وب‌سایت آموزشی برای معرفی دوره‌ها، دریافت درخواست مشاوره و راهنمایی مخاطبان برای انتخاب مسیر یادگیری.", project2Title:"ابزارها و داشبورد ترید", project2Text:"ایده‌ای برای ابزارهای معاملاتی، ماشین‌حساب‌ها، داشبوردها و بهبود فرایندهای کاری.", project3Title:"اتوماسیون و ربات‌های هوش مصنوعی", project3Text:"راهکارهایی برای اتصال ابزارها، کاهش کارهای تکراری و ساده‌تر کردن فرایندهای روزمره.", projectLink:"مشاهده / گفت‌وگو درباره پروژه ↗",
+        experienceKicker:"مسیر حرفه‌ای من", experienceTitle:"سوابق و حوزه تمرکز", exp1Title:"توسعه‌دهنده هوش مصنوعی و وایب‌کدر", exp1Date:"تمرکز فعلی", exp1Text:"طراحی و ساخت وب‌سایت، وب‌اپلیکیشن‌های سبک و راهکارهای دیجیتال با کمک هوش مصنوعی.", exp2Title:"مدرس هوش مصنوعی و فناوری", exp2Date:"آموزش و کارگاه", exp2Text:"کمک به یادگیری ابزارهای هوش مصنوعی و استفاده عملی از آن‌ها در پروژه‌های واقعی.", exp3Title:"ترید و بازارهای مالی", exp3Date:"آموزش و تحلیل", exp3Text:"تجربه تولید محتوای آموزشی و طراحی فرایندهای کاربردی در حوزه بازارهای مالی.", valuesTitle:"ویژگی همکاری با من", value1:"ارتباط شفاف", value2:"توسعه با کمک AI", value3:"طراحی واکنش‌گرا", value4:"بهبود مرحله‌ای", value5:"راهکار کاربردی", valuesText:"هدف من کاربردی، قابل فهم و قابل نگهداری کردن فناوری است. با گسترش نمونه‌کارها می‌توان جزئیات و تاریخ هر پروژه را به این بخش اضافه کرد.",
+        contactKicker:"ایده‌ای دارید؟", contactTitle:"بیایید چیزی کاربردی بسازیم.", contactNote:"درباره ایده‌تان بنویسید. این فرم برنامه ایمیل دستگاه شما را با پیام آماده باز می‌کند.", contactCardTitle:"راه‌های ارتباطی", contactCardText:"برای طراحی سایت، اتوماسیون، پروژه هوش مصنوعی یا همکاری از اطلاعات زیر استفاده کنید.", emailLabel:"ایمیل — این مقدار را تغییر دهید", githubPlaceholder:"لینک پروفایل گیت‌هاب را وارد کنید", linkedinPlaceholder:"لینک پروفایل لینکدین را وارد کنید", formName:"نام شما", formEmail:"ایمیل شما", formSubject:"موضوع پروژه", formMessage:"توضیحات", formSend:"آماده‌سازی ایمیل ↗", formNote:"فرم نمایشی است؛ این وب‌سایت استاتیک اطلاعاتی ذخیره یا ارسال نمی‌کند.", rights:"ساخته‌شده با کنجکاوی و هوش مصنوعی.", backTop:"بازگشت به بالا ↑"
+      }
+    };
+
+    let currentLang = localStorage.getItem("sa-lang") || "en";
+    let currentTheme = localStorage.getItem("sa-theme") || "dark";
+    const root = document.documentElement;
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      root.lang = lang;
+      root.dir = lang === "fa" ? "rtl" : "ltr";
+      document.documentElement.style.setProperty("--font", lang === "fa" ? '"Vazirmatn", sans-serif' : '"Inter", sans-serif');
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+      document.getElementById("languageToggle").textContent = lang === "en" ? "فا" : "EN";
+      document.getElementById("languageToggle").setAttribute("aria-label", lang === "en" ? "تغییر زبان به فارسی" : "Switch language to English");
+      document.title = lang === "fa" ? "سعید آراد — توسعه‌دهنده هوش مصنوعی و وایب‌کدر" : "Saeed Arad — AI Developer & Vibe Coder";
+      localStorage.setItem("sa-lang", lang);
+    }
+    function setTheme(theme) {
+      currentTheme = theme;
+      root.dataset.theme = theme;
+      document.getElementById("themeToggle").textContent = theme === "dark" ? "☼" : "☾";
+      document.getElementById("themeToggle").setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+      localStorage.setItem("sa-theme", theme);
+    }
+    document.getElementById("languageToggle").addEventListener("click", () => setLanguage(currentLang === "en" ? "fa" : "en"));
+    document.getElementById("themeToggle").addEventListener("click", () => setTheme(currentTheme === "dark" ? "light" : "dark"));
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.textContent = open ? "×" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      navLinks.classList.remove("open"); menuToggle.setAttribute("aria-expanded", "false"); menuToggle.textContent = "☰";
+    }));
+    document.getElementById("contactForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const data = new FormData(e.currentTarget);
+      const subject = encodeURIComponent(data.get("subject"));
+      const body = encodeURIComponent(`${currentLang === "fa" ? "نام" : "Name"}: ${data.get("name")}\n${currentLang === "fa" ? "ایمیل" : "Email"}: ${data.get("email")}\n\n${data.get("message")}`);
+      // Replace hello@example.com with your real email address before publishing.
+      window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+    }), { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    setTheme(currentTheme);
+    setLanguage(currentLang);
+  </script>
+</body>
+</html>
